@@ -18,7 +18,7 @@ If it is root, it will drop its privileges after opening these files.
 
 ## Install: ##
 
-* Copy onetouch-iii-button to somewhere in udevd's path.  (e.g. /sbin)
+* Copy onetouch-iii-button to /lib/udev
 * Copy onetouch-autostart-daemon.rules to /etc/udev/rules.d
 
 udevd should start the poller automatically.  Device removal will cause the program to exit.
