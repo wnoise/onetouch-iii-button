@@ -1,0 +1,1 @@
+ATTRS{idVendor}=="0d49", ATTRS{idProduct}=="7201", ENV{DEVTYPE}=="disk", RUN+="onetouch-iii-button '%r/$name'"
