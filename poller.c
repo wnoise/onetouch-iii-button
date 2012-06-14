@@ -115,7 +115,7 @@ static void check_status_vpd(int scsi_fd)
     char buffer[32];
     res = sg_ll_inquiry(scsi_fd, 0, 1, status_vpd_num, buffer, 32, 0, 0);
     if (res) {
-        fputs("Can't read list status VPD\n", stderr);
+        fputs("Can't read status VPD\n", stderr);
         exit(EXIT_FAILURE);
     }
     if (!vpd_header_okay(status_vpd_num, 6, buffer)) {
@@ -124,7 +124,7 @@ static void check_status_vpd(int scsi_fd)
     }
     if (memcmp(buffer + vpd_header_size, constant_status_vpd_bytes,
                 constant_status_vpd_count)) {
-        fputs("Unexpected list of supported VPDs\n", stderr);
+        fputs("Unexpected status VPD format\n", stderr);
         exit(EXIT_FAILURE);
     }
 }
@@ -150,9 +150,16 @@ static void poll_scsi(int scsi_fd, int *since_last, int *now)
     uint8_t buffer[32];
     res = sg_ll_inquiry(scsi_fd, 0, 1, status_vpd_num, buffer, 32, 0, 0);
     if (res) {
+        fputs("Can't read status VPD\n", stderr);
         exit(EXIT_FAILURE);
     }
     if (!vpd_header_okay(status_vpd_num, 6, buffer)) {
+        fputs("Unexpected status VPD format\n", stderr);
+        exit(EXIT_FAILURE);
+    }
+    if (memcmp(buffer + vpd_header_size, constant_status_vpd_bytes,
+                constant_status_vpd_count)) {
+        fputs("Unexpected status VPD format\n", stderr);
         exit(EXIT_FAILURE);
     }
     *since_last = buffer[vpd_header_size + since_index];
