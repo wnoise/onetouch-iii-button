@@ -99,7 +99,7 @@ static void check_vpd_list(int scsi_fd)
         exit(EXIT_FAILURE);
     }
     if (!vpd_header_okay(0, supported_vpds_count, buffer)) {
-        fputs("Unexpected list of supported VPDs\n", stderr);
+        fputs("Unexpected header for list of supported VPDs\n", stderr);
         exit(EXIT_FAILURE);
     }
     if (memcmp(buffer + vpd_header_size, supported_vpds,
