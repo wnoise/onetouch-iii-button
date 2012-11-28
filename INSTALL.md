@@ -18,7 +18,19 @@ If it is root, it will drop its privileges after opening these files.
 
 ## Install: ##
 
+You can, of course, run this however you want.  We have included a
+sample udev rule to start it automatically when this drive is plugged
+into the USB port.  The poller should automatically be started by udevd,
+and device removal will cause the program to exit.
+
+### For USB: ###
+
 * Copy onetouch-iii-button to /lib/udev
 * Copy onetouch-autostart-daemon.rules to /etc/udev/rules.d
 
-udevd should start the poller automatically.  Device removal will cause the program to exit.
+### For Firewire: ###
+
+* Copy onetouch-iii-button to /lib/udev
+* Figure out what changes to make to onetouch-autostart-daemon.rules in
+  order to recognize the drive, and copy to /etc/udev/rules.d .  Good luck,
+  and let me know.

@@ -2,9 +2,8 @@ Userspace driver for the maxtor OneTouch III drive's button.
 
 ## What is it ##
 
-An external hard drive, with a button on it that can launch a program in
-windows -- e.g. a backup or sync.  I have only experienced using it with
-the USB port.
+An external USB/Firewire hard drive, with a button on it that can launch
+a program in windows -- e.g. a backup or sync.
 
 ## Button support ##
 
@@ -34,7 +33,15 @@ per second, and injects inputs via Linux's "uinput" subsystem.
 
 ## Firewire support ##
 
-Non-existent.  I have no current hardware to test it with.
+It appears to work with no code changes, but I have not yet constructed
+a sample rule for udev to automatically launch it.  In addition, it
+reports the USB IDs to the uinput subsytem, instead of trying to
+shoe-horn the Firewire ID in.
+
+The Firewire IDs are:
+* Vendor ID: 0x000010B9
+* Unit Spec ID: 0x0000609E
+* Model ID: 0x00007200
 
 ## Contact ##
 
