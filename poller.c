@@ -13,8 +13,8 @@
 #include <scsi/sg_lib.h>
 #include <scsi/sg_cmds_basic.h>
 
-static const int supported_vpds []  = { 0x00, 0x80, 0xc0, 0xc1, 0xc2, 0xc3 };
-static const int constant_status_vpd_bytes []  =  { 0x01, 0x00, 0x00, 0x00 };
+static const uint8_t supported_vpds []  = { 0x00, 0x80, 0xc0, 0xc1, 0xc2, 0xc3 };
+static const uint8_t constant_status_vpd_bytes []  =  { 0x01, 0x00, 0x00, 0x00 };
 static const int vpd_header_size = 4;
 static const uint16_t vendor = 0xd49;
 static const uint16_t product = 0x7201;
